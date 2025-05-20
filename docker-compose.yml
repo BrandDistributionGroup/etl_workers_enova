@@ -1,5 +1,5 @@
 services:
-  etl_bdgroup:
+  etl_enova:
     build: .
     volumes:
       - /home/robot/bdgroup/project_params:/app/project_params

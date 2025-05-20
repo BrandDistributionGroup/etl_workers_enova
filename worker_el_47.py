@@ -28,9 +28,7 @@ def main():
 
     # Extract data
     for company_name, table_name, company_db in COMPANY_DATABASE_LIST:
-
-        logger.info(f'{company_name} {table_name} {company_db}')
-
+        
         with MssqlConnection(server=server,
                             username=username,
                             password=password,
@@ -42,7 +40,9 @@ def main():
             
             extractor.set_connection(conn_sql=conn)
             extractor.create_parquet(
-                table_query=ACCOUNTS_47_QUERY.format(company_name=company_db),
+                table_query=ACCOUNTS_47_QUERY.format(
+                    company_name=company_name
+                    ),
                 table_name=table_name
             )
 

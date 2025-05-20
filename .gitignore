@@ -1,0 +1,6 @@
+__pycache__
+project_params/
+*.parquet
+logs/
+shared_db/
+temp/

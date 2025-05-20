@@ -1,0 +1,13 @@
+services:
+  etl_bdgroup:
+    build: .
+    volumes:
+      - /home/robot/bdgroup/project_params:/app/project_params
+      - /home/robot/bdgroup/temp:/app/temp
+      - /home/robot/bdgroup/shared_db:/app/shared_db
+      - /home/robot/bdgroup/logs:/app/logs 
+    environment:
+      - ENV=production
+      - CONFIG_PATH=/app/project_params/config.ini
+    entrypoint: ["/bin/sh"]
+    mem_limit: 16g

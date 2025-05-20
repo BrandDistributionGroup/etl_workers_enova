@@ -1,0 +1,25 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+	"containerUser": "vscode",
+
+    "mounts": [
+		"source=C:\\Users\\azakrevskii\\dev_project\\dw_project\\_ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+        "source=C:\\Users\\azakrevskii\\dev_project\\dw_project\\_shared_db,target=/workspace/shared_db,type=bind",
+		"source=C:\\Users\\azakrevskii\\dev_project\\dw_project\\_project_params,target=/workspace/project_params,type=bind",
+        "source=C:\\Users\\azakrevskii\\dev_project\\dw_project\\etl_workers_enova,target=/workspace/,type=bind,consistency=cached",
+		"source=C:\\Users\\azakrevskii\\dev_project\\repositorium,target=/workspace/repositorium,type=bind,consistency=cached"
+    ],
+	
+    "workspaceFolder": "/workspace",
+
+	"containerEnv": {
+        "CONFIG_PATH": "/workspace/project_params/config.ini"
+    },
+	
+	"postCreateCommand": "mkdir -p /workspace/temp && pip3 install --no-cache-dir -r requirements.txt && git config --global --add safe.directory /workspace && git config --global user.name 'Aleks Zakrzewski' && git config --global user.email 'a.zakrevskii@bdgroup.eu' && echo 'eval \"$(ssh-agent -s)\" && ssh-add ~/.ssh/bdg_devcon' >> ~/.bashrc"
+
+}
